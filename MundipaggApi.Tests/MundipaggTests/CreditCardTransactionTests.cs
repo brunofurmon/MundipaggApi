@@ -9,10 +9,10 @@ using GatewayApiClient.EnumTypes;
 using System.Net;
 
 
-namespace MundipaggApi.Tests.ControllersTests
+namespace MundipaggApi.Tests.MundipaggTests
 {
     [TestClass]
-    public class MundiPaggTransactionTests
+    public class CreditCardTransactionTests
     {
         [TestMethod]
         public void ShouldCreateTransaction()

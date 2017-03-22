@@ -90,11 +90,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AbstractApiController.cs" />
+    <Compile Include="Controllers\OnlineDebtController.cs" />
+    <Compile Include="Controllers\BoletoController.cs" />
+    <Compile Include="Controllers\CreditCardController.cs" />
+    <Compile Include="Services\BoletoService.cs" />
+    <Compile Include="Services\OnlineDebtService.cs" />
+    <Compile Include="Services\CreditCardService.cs" />
+    <Compile Include="Controllers\ITransactionController.cs" />
     <Compile Include="Controllers\WelcomeController.cs" />
+    <Compile Include="Daos\AbstractTransactionDao.cs" />
+    <Compile Include="Daos\BoletoDao.cs" />
+    <Compile Include="Daos\CreditCardDao.cs" />
+    <Compile Include="Daos\ITransactionDao.cs" />
+    <Compile Include="Daos\OnlineDebtDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AbstractTransactionService.cs" />
+    <Compile Include="Services\ITransactionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -107,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
