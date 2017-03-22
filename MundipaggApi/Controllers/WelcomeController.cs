@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace MundipaggApi.Controllers
 {
-    [RoutePrefix("api/welcome")]
+    [RoutePrefix("")]
     public class WelcomeController : ApiController
     {
         [HttpGet]
