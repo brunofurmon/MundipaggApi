@@ -1,9 +1,8 @@
-﻿using MundipaggApi.Daos;
+﻿using GatewayApiClient.DataContracts;
+using GatewayApiClient.Utility;
+using MundipaggApi.Daos;
 using MundipaggApi.Dto;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 
 namespace MundipaggApi.Services
@@ -24,19 +23,19 @@ namespace MundipaggApi.Services
             this.dao = creditCardTransactionDao;
         }
 
-        public override void Create(CreateTransactionForm form)
+        public override HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form)
         {
-            this.dao.Create(form);
+            return this.dao.Create(form);
         }
 
-        public override void Capture(Guid orderKey)
+        public override HttpResponse<ManageSaleResponse> Capture(Guid orderKey)
         {
-            this.dao.Capture(orderKey);
+            return this.dao.Capture(orderKey);
         }
 
-        public override void Cancel(Guid orkerKey)
+        public override HttpResponse<ManageSaleResponse> Cancel(Guid orkerKey)
         {
-            this.dao.Cancel(orkerKey);
+            return this.dao.Cancel(orkerKey);
         }
     }
 }

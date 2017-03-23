@@ -1,4 +1,6 @@
-﻿using GatewayApiClient.DataContracts.EnumTypes;
+﻿using GatewayApiClient.DataContracts;
+using GatewayApiClient.DataContracts.EnumTypes;
+using GatewayApiClient.Utility;
 using MundipaggApi.Dto;
 using MundipaggApi.Services;
 using System;
@@ -49,8 +51,10 @@ namespace MundipaggApi.Controllers
                 return Json(ModelState);
             }
 
-            this.transactionService.Create(form);
-            return Ok("Create");
+            HttpResponse<CreateSaleResponse> transactionResponse = this.transactionService.Create(form);
+
+            // Bypasses HttpStatusCode to client
+            return Content(transactionResponse.HttpStatusCode, transactionResponse.Response);
         }
 
         [HttpPost]

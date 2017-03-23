@@ -1,4 +1,6 @@
-﻿using MundipaggApi.Dto;
+﻿using GatewayApiClient.DataContracts;
+using GatewayApiClient.Utility;
+using MundipaggApi.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,8 @@ namespace MundipaggApi.Daos
     {
         public AbstractTransactionDao() : base() { }
 
-        public abstract void Create(CreateTransactionForm form);
-        public abstract void Capture(Guid orkerKey);
-        public abstract void Cancel(Guid orderKey);
+        public abstract HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form);
+        public abstract HttpResponse<ManageSaleResponse> Capture(Guid orkerKey);
+        public abstract HttpResponse<ManageSaleResponse> Cancel(Guid orderKey);
     }
 }

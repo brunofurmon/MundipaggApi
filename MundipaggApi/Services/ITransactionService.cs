@@ -1,4 +1,6 @@
-﻿using MundipaggApi.Dto;
+﻿using GatewayApiClient.DataContracts;
+using GatewayApiClient.Utility;
+using MundipaggApi.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,8 @@ namespace MundipaggApi.Services
 {
     public interface ITransactionService
     {
-        void Create(CreateTransactionForm form);
-        void Capture(Guid orderKey);
-        void Cancel(Guid orkerKey);
+        HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form);
+        HttpResponse<ManageSaleResponse> Capture(Guid orderKey);
+        HttpResponse<ManageSaleResponse> Cancel(Guid orkerKey);
     }
 }

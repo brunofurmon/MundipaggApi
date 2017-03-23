@@ -30,33 +30,37 @@ namespace MundipaggApi.Daos
             this.serviceClient = new GatewayServiceClient(MERCHANT_KEY, new Uri(HOST_URI));
         }
 
-        public override void Cancel(Guid orderKey)
+        public override HttpResponse<ManageSaleResponse> Cancel(Guid orderKey)
         {
             // Cancela as transações de cartão de crédito do pedido.
             HttpResponse<ManageSaleResponse> httpResponse = serviceClient.Sale.Manage(ManageOperationEnum.Cancel, orderKey);
 
-            if (httpResponse.HttpStatusCode == HttpStatusCode.OK
-                && httpResponse.Response.CreditCardTransactionResultCollection.Any()
-                && httpResponse.Response.CreditCardTransactionResultCollection.All(p => p.Success == true))
-            {
-                Console.WriteLine("Transações canceladas.");
-            }
+            //if (httpResponse.HttpStatusCode == HttpStatusCode.OK
+            //    && httpResponse.Response.CreditCardTransactionResultCollection.Any()
+            //    && httpResponse.Response.CreditCardTransactionResultCollection.All(p => p.Success == true))
+            //{
+            //    Console.WriteLine("Transações canceladas.");
+            //}
+
+            return httpResponse;
         }
 
-        public override void Capture(Guid orderKey)
+        public override HttpResponse<ManageSaleResponse> Capture(Guid orderKey)
         {
             // Captura as transações de cartão de crédito do pedido.
             HttpResponse<ManageSaleResponse> httpResponse = serviceClient.Sale.Manage(ManageOperationEnum.Capture, orderKey);
 
-            if (httpResponse.HttpStatusCode == HttpStatusCode.OK
-                && httpResponse.Response.CreditCardTransactionResultCollection.Any()
-                && httpResponse.Response.CreditCardTransactionResultCollection.All(p => p.Success == true))
-            {
-                Console.WriteLine("Transações capturadas.");
-            }
+            //if (httpResponse.HttpStatusCode == HttpStatusCode.OK
+            //    && httpResponse.Response.CreditCardTransactionResultCollection.Any()
+            //    && httpResponse.Response.CreditCardTransactionResultCollection.All(p => p.Success == true))
+            //{
+            //    Console.WriteLine("Transações capturadas.");
+            //}
+
+            return httpResponse;
         }
 
-        public override void Create(CreateTransactionForm form)
+        public override HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form)
         {
             // Converts string into one of CreditCardBrandEnum options
             CreditCardBrandEnum card = (CreditCardBrandEnum) Enum.Parse(typeof(CreditCardBrandEnum), form.CreditCardBrand);
@@ -91,12 +95,14 @@ namespace MundipaggApi.Daos
             // Autoriza a transação e recebe a resposta do gateway.
             HttpResponse<CreateSaleResponse> httpResponse = serviceClient.Sale.Create(createSaleRequest);
 
-            Console.WriteLine("Código retorno: {0}", httpResponse.HttpStatusCode);
-            Console.WriteLine("Chave do pedido: {0}", httpResponse.Response.OrderResult.OrderKey);
-            if (httpResponse.Response.CreditCardTransactionResultCollection != null)
-            {
-                Console.WriteLine("Status transação: {0}", httpResponse.Response.CreditCardTransactionResultCollection.FirstOrDefault().CreditCardTransactionStatus);
-            }
+            //Console.WriteLine("Código retorno: {0}", httpResponse.HttpStatusCode);
+            //Console.WriteLine("Chave do pedido: {0}", httpResponse.Response.OrderResult.OrderKey);
+            //if (httpResponse.Response.CreditCardTransactionResultCollection != null)
+            //{
+            //    Console.WriteLine("Status transação: {0}", httpResponse.Response.CreditCardTransactionResultCollection.FirstOrDefault().CreditCardTransactionStatus);
+            //}
+
+            return httpResponse;
         }
     }
 }

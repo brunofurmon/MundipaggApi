@@ -1,4 +1,6 @@
-﻿using MundipaggApi.Dto;
+﻿using GatewayApiClient.DataContracts;
+using GatewayApiClient.Utility;
+using MundipaggApi.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +13,17 @@ namespace MundipaggApi.Daos
     {
         public MockedCreditCardDao() : base() { }
 
-        public override void Cancel(Guid orkerKey)
+        public override HttpResponse<ManageSaleResponse> Cancel(Guid orkerKey)
         {
             throw new NotImplementedException();
         }
 
-        public override void Capture(Guid orkerKey)
+        public override HttpResponse<ManageSaleResponse> Capture(Guid orkerKey)
         {
             throw new NotImplementedException();
         }
 
-        public override void Create(CreateTransactionForm form)
+        public override HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form)
         {
             throw new NotImplementedException();
         }
