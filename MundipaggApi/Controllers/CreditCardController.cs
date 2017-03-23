@@ -45,7 +45,7 @@ namespace MundipaggApi.Controllers
 
             if (!ModelState.IsValid)
             {
-                return Json(ModelState);
+                return BadRequest(ModelState);
             }
 
             HttpResponse<CreateSaleResponse> transactionResponse = this.transactionService.Create(form);

@@ -28,7 +28,7 @@ namespace MundipaggApi.Tests.MundipaggTests
         [TestMethod]
         public void ShouldCreateExactlyOneTransaction()
         {
-            CreateSaleRequest createSaleRequest = SaleRequestFactory.GenerateSaleRequest();
+            CreateSaleRequest createSaleRequest = ModelFactory.GenerateSaleRequest();
 
             var httpResponse = serviceClient.Sale.Create(createSaleRequest);
 
@@ -39,7 +39,7 @@ namespace MundipaggApi.Tests.MundipaggTests
         [TestMethod]
         public void ShouldCaptureCreatedTransaction()
         {
-            CreateSaleRequest createSaleRequest = SaleRequestFactory.GenerateSaleRequest();
+            CreateSaleRequest createSaleRequest = ModelFactory.GenerateSaleRequest();
             var creationResponse = serviceClient.Sale.Create(createSaleRequest);
             Guid orderKey = creationResponse.Response.OrderResult.OrderKey;
 
@@ -52,7 +52,7 @@ namespace MundipaggApi.Tests.MundipaggTests
         [TestMethod]
         public void ShouldCancelCreatedTransaction()
         {
-            CreateSaleRequest createSaleRequest = SaleRequestFactory.GenerateSaleRequest();
+            CreateSaleRequest createSaleRequest = ModelFactory.GenerateSaleRequest();
             var creationResponse = serviceClient.Sale.Create(createSaleRequest);
             Guid orderKey = creationResponse.Response.OrderResult.OrderKey;
 
