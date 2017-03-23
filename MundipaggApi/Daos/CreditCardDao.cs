@@ -35,13 +35,6 @@ namespace MundipaggApi.Daos
             // Cancela as transações de cartão de crédito do pedido.
             HttpResponse<ManageSaleResponse> httpResponse = serviceClient.Sale.Manage(ManageOperationEnum.Cancel, orderKey);
 
-            //if (httpResponse.HttpStatusCode == HttpStatusCode.OK
-            //    && httpResponse.Response.CreditCardTransactionResultCollection.Any()
-            //    && httpResponse.Response.CreditCardTransactionResultCollection.All(p => p.Success == true))
-            //{
-            //    Console.WriteLine("Transações canceladas.");
-            //}
-
             return httpResponse;
         }
 
@@ -49,13 +42,6 @@ namespace MundipaggApi.Daos
         {
             // Captura as transações de cartão de crédito do pedido.
             HttpResponse<ManageSaleResponse> httpResponse = serviceClient.Sale.Manage(ManageOperationEnum.Capture, orderKey);
-
-            //if (httpResponse.HttpStatusCode == HttpStatusCode.OK
-            //    && httpResponse.Response.CreditCardTransactionResultCollection.Any()
-            //    && httpResponse.Response.CreditCardTransactionResultCollection.All(p => p.Success == true))
-            //{
-            //    Console.WriteLine("Transações capturadas.");
-            //}
 
             return httpResponse;
         }
@@ -85,7 +71,10 @@ namespace MundipaggApi.Daos
             CreateSaleRequest createSaleRequest = new CreateSaleRequest()
             {
                 // Adiciona a transação na requisição.
-                CreditCardTransactionCollection = new Collection<CreditCardTransaction>(new CreditCardTransaction[] { transaction }),
+                CreditCardTransactionCollection = new Collection<CreditCardTransaction>
+                (
+                    new CreditCardTransaction[] { transaction }
+                ),
                 Order = new Order()
                 {
                     OrderReference = "NumeroDoPedido"
@@ -94,13 +83,6 @@ namespace MundipaggApi.Daos
 
             // Autoriza a transação e recebe a resposta do gateway.
             HttpResponse<CreateSaleResponse> httpResponse = serviceClient.Sale.Create(createSaleRequest);
-
-            //Console.WriteLine("Código retorno: {0}", httpResponse.HttpStatusCode);
-            //Console.WriteLine("Chave do pedido: {0}", httpResponse.Response.OrderResult.OrderKey);
-            //if (httpResponse.Response.CreditCardTransactionResultCollection != null)
-            //{
-            //    Console.WriteLine("Status transação: {0}", httpResponse.Response.CreditCardTransactionResultCollection.FirstOrDefault().CreditCardTransactionStatus);
-            //}
 
             return httpResponse;
         }

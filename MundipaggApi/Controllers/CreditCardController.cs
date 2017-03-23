@@ -34,17 +34,17 @@ namespace MundipaggApi.Controllers
         [Route("")]
         public IHttpActionResult Create(CreateTransactionForm form)
         {
-            // Goes to Validation from here
+            // Validation Sample
             List<string> possibleCardBrands = Enum.GetNames(typeof(CreditCardBrandEnum)).ToList();
             if (!possibleCardBrands.Contains(form.CreditCardBrand))
             {
                 string errorMessage = string.Format(
-                    "O cartão do tipo \"{0}\" não existe. Possíveis: {1}",
+                    "O Bandeira de Cartão \"{0}\" não existe. Bandeiras possíveis: {1}",
                     form.CreditCardBrand,
                     string.Join(", ", possibleCardBrands));
-                ModelState.AddModelError("bandeiraInvalida", errorMessage);
+                ModelState.AddModelError("invalidCreditCardBrand", errorMessage);
             }
-            // Validate more fields here
+            // Future: More Validation on the Model
 
             if (!ModelState.IsValid)
             {
@@ -59,16 +59,32 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("{orderId}/capture")]
-        public IHttpActionResult Capture(string orderId)
+        public IHttpActionResult Capture(Guid orderId)
         {
-            return Ok(string.Format("Capture {0} order", orderId));
+            if (!ModelState.IsValid)
+            {
+                return Json(ModelState);
+            }
+
+            HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Capture(orderId);
+
+            // Bypasses HttpStatusCode to client
+            return Content(transactionResponse.HttpStatusCode, transactionResponse.Response);
         }
 
         [HttpPost]
         [Route("{orderId}/cancel")]
-        public IHttpActionResult Cancel(string orderId)
+        public IHttpActionResult Cancel(Guid orderId)
         {
-            return Ok(string.Format("Cancel {0} order", orderId));
+            if (!ModelState.IsValid)
+            {
+                return Json(ModelState);
+            }
+
+            HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Cancel(orderId);
+
+            // Bypasses HttpStatusCode to client
+            return Content(transactionResponse.HttpStatusCode, transactionResponse.Response);
         }
     }
 }
