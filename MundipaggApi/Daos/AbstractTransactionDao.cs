@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MundipaggApi.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,8 +11,8 @@ namespace MundipaggApi.Daos
     {
         public AbstractTransactionDao() : base() { }
 
-        public abstract void Create();
-        public abstract void Capture();
-        public abstract void Cancel();
+        public abstract void Create(CreateTransactionForm form);
+        public abstract void Capture(Guid orkerKey);
+        public abstract void Cancel(Guid orderKey);
     }
 }

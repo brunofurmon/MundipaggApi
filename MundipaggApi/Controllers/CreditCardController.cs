@@ -1,10 +1,14 @@
-﻿using MundipaggApi.Services;
+﻿using GatewayApiClient.DataContracts.EnumTypes;
+using MundipaggApi.Dto;
+using MundipaggApi.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
-
+using System.Web.Http.Results;
 
 namespace MundipaggApi.Controllers
 {
@@ -25,8 +29,25 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Create()
+        public IHttpActionResult Create(CreateTransactionForm form)
         {
+            // Goes to Validation from here
+            List<string> possibleCardBrands = Enum.GetNames(typeof(CreditCardBrandEnum)).ToList();
+            if (!possibleCardBrands.Contains(form.CreditCardBrand))
+            {
+                string errorMessage = string.Format(
+                    "O cartão do tipo \"{0}\" não existe. Possíveis: {1}",
+                    form.CreditCardBrand,
+                    string.Join(", ", possibleCardBrands));
+                ModelState.AddModelError("bandeiraInvalida", errorMessage);
+            }
+            // Validate more fields here
+
+            if (!ModelState.IsValid)
+            {
+                return Json(ModelState);
+            }
+
             return Ok("Create");
         }
 

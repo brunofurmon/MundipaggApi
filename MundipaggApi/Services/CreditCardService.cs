@@ -1,4 +1,5 @@
 ﻿using MundipaggApi.Daos;
+using MundipaggApi.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,19 +24,19 @@ namespace MundipaggApi.Services
             this.dao = creditCardTransactionDao;
         }
 
-        public override void Create()
+        public override void Create(CreateTransactionForm form)
         {
-            this.dao.Create();
+            this.dao.Create(form);
         }
 
-        public override void Capture()
+        public override void Capture(Guid orderKey)
         {
-            this.dao.Capture();
+            this.dao.Capture(orderKey);
         }
 
-        public override void Cancel()
+        public override void Cancel(Guid orkerKey)
         {
-            this.dao.Cancel();
+            this.dao.Cancel(orkerKey);
         }
     }
 }
