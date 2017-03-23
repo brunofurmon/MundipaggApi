@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MundipaggApi</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Realizando transações de cartão de crédito</h1>
+    <h2>POST /api/transaction</h2>
+    <div class="table">
+        <h4 class="paramGroupTitle">Body Params</h4><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[</span>AmountInCents<span class="text-muted">]</span><span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                    <p>Valor da transação em centavos. R$ 100,00 = 10000</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[CreditCard[</span>CreditCardBrand<span class="text-muted">]</span><span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                    <p>Bandeira do cartão do cliente</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[CreditCard[</span>CreditCardNumber<span class="text-muted">]</span><span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                    <p>Número do cartão do cliente. Informar apenas números.</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[CreditCard[</span>ExpMonth<span class="text-muted">]</span><span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                    <p>Mês de expiração do cartão</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[CreditCard[</span>ExpYear<span class="text-muted">]</span><span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                    <p>Ano de expiração do cartão</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[CreditCard[</span>SecurityCode<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+                <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                    <p>Código de segurança do cartão</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[CreditCard[</span>HolderName<span class="text-muted">]</span><span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                    <p>Nome do portador do cartão</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[</span>InstallmentCount<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+                <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                    <p>Número de Parcelas</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">Order[</span>OrderReference<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+                <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                    <p>Identificador do pedido na sua base</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Cancelamento</h1>
+    <h2>POST /api/transaction/{orderKey}/cancel</h2>
+    <div class="table">
+        <h4 class="paramGroupTitle">Body Params</h4><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[</span>AmountInCents<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+                <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                    <p>Valor que será cancelado em centavos</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[</span>TransactionKey<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+                <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                    <p>Chave da transação na MundiPagg</p>
+                </div>
+            </div>
+        </div><div class="tr">
+            <div class="td param"><strong>OrderKey<span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+                <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                    <p>Chave do pedido da MundiPagg</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Captura</h1>
+    <h2>POST /api/transaction/{orderKey}/capture</h2>
+    <h4 class="paramGroupTitle">Body Params</h4><div class="tr">
+        <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[</span>AmountInCents<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+            <strong class="param-type">integer</strong><div marked="" class="ng-isolate-scope">
+                <p>Valor que será capturado em centavos</p>
+            </div>
+        </div>
+    </div><div class="tr">
+        <div class="td param"><strong><span class="text-muted">CreditCardTransactionCollection[</span>TransactionKey<span class="text-muted">]</span><span class="colon">:</span></strong></div><div class="td">
+            <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                <p>Chave da transação na MundiPagg</p>
+            </div>
+        </div>
+    </div><div class="tr">
+        <div class="td param"><strong>OrderKey<span class="colon">:</span></strong><div class="required">required</div></div><div class="td">
+            <strong class="param-type">string</strong><div marked="" class="ng-isolate-scope">
+                <p>Chave do pedido da MundiPagg</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
