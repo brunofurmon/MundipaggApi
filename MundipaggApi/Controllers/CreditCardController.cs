@@ -3,11 +3,12 @@ using GatewayApiClient.DataContracts.EnumTypes;
 using GatewayApiClient.Utility;
 using MundipaggApi.Dto;
 using MundipaggApi.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-
+using System.Xml;
 
 namespace MundipaggApi.Controllers
 {
@@ -28,7 +29,7 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Create(CreateTransactionForm form)
+        public override IHttpActionResult Create(CreateTransactionForm form)
         {
             // Validation Sample
             List<string> possibleCardBrands = Enum.GetNames(typeof(CreditCardBrandEnum)).ToList();
@@ -55,11 +56,11 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("{orderId}/capture")]
-        public IHttpActionResult Capture(Guid orderId)
+        public override IHttpActionResult Capture(Guid orderId)
         {
             if (!ModelState.IsValid)
             {
-                return Json(ModelState);
+                return BadRequest(ModelState);
             }
 
             HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Capture(orderId);
@@ -70,11 +71,11 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("{orderId}/cancel")]
-        public IHttpActionResult Cancel(Guid orderId)
+        public override IHttpActionResult Cancel(Guid orderId)
         {
             if (!ModelState.IsValid)
             {
-                return Json(ModelState);
+                return BadRequest(ModelState);
             }
 
             HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Cancel(orderId);

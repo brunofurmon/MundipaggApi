@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MundipaggApi.Dto;
+using System;
 using System.Web.Http;
 
 
@@ -9,8 +7,8 @@ namespace MundipaggApi.Controllers
 {
     public interface ITransactionController
     {
-        IHttpActionResult Create();
-        IHttpActionResult Capture();
-        IHttpActionResult Cancel();
+        IHttpActionResult Create(CreateTransactionForm form);
+        IHttpActionResult Capture(Guid orderId);
+        IHttpActionResult Cancel(Guid orderId);
     }
 }

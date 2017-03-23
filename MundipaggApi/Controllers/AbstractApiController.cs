@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
+using MundipaggApi.Dto;
 
 
 namespace MundipaggApi.Controllers
 {
-    public abstract class AbstractTransactionController : ApiController
+    public abstract class AbstractTransactionController : ApiController, ITransactionController
     {
         public AbstractTransactionController() : base() { }
+
+        public abstract IHttpActionResult Cancel(Guid orderId);
+        public abstract IHttpActionResult Capture(Guid orderId);
+        public abstract IHttpActionResult Create(CreateTransactionForm form);
     }
 }
