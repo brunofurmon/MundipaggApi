@@ -1,5 +1,9 @@
-﻿using System;
+﻿using GatewayApiClient;
+using GatewayApiClient.DataContracts;
+using GatewayApiClient.DataContracts.EnumTypes;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
