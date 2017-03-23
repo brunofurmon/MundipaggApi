@@ -8,7 +8,7 @@ namespace MundipaggApi.Controllers
     public interface ITransactionController
     {
         IHttpActionResult Create(CreateTransactionForm form);
-        IHttpActionResult Capture(Guid orderId);
-        IHttpActionResult Cancel(Guid orderId);
+        IHttpActionResult Capture(string orderId);
+        IHttpActionResult Cancel(string orderId);
     }
 }

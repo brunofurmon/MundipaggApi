@@ -56,14 +56,24 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("{orderId}/capture")]
-        public override IHttpActionResult Capture(Guid orderId)
+        public override IHttpActionResult Capture(string orderId)
         {
+            Guid orderIdGuid;
+            bool guidIsParseable = Guid.TryParse(orderId, out orderIdGuid);
+            if (!guidIsParseable)
+            {
+                string errorMessage = string.Format(
+                    "O Guid\"{0}\" não é válido",
+                    orderId);
+                ModelState.AddModelError("invalidGuid", errorMessage);
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Capture(orderId);
+            HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Capture(orderIdGuid);
 
             // Bypasses HttpStatusCode to client
             return Content(transactionResponse.HttpStatusCode, transactionResponse.Response);
@@ -71,14 +81,24 @@ namespace MundipaggApi.Controllers
 
         [HttpPost]
         [Route("{orderId}/cancel")]
-        public override IHttpActionResult Cancel(Guid orderId)
+        public override IHttpActionResult Cancel(string orderId)
         {
+            Guid orderIdGuid;
+            bool guidIsParseable = Guid.TryParse(orderId, out orderIdGuid);
+            if (!guidIsParseable)
+            {
+                string errorMessage = string.Format(
+                    "O Guid\"{0}\" não é válido",
+                    orderId);
+                ModelState.AddModelError("invalidGuid", errorMessage);
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Cancel(orderId);
+            HttpResponse<ManageSaleResponse> transactionResponse = this.transactionService.Cancel(orderIdGuid);
 
             // Bypasses HttpStatusCode to client
             return Content(transactionResponse.HttpStatusCode, transactionResponse.Response);
