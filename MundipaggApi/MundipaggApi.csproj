@@ -98,9 +98,9 @@
     <Compile Include="Services\CreditCardService.cs" />
     <Compile Include="Controllers\ITransactionController.cs" />
     <Compile Include="Controllers\WelcomeController.cs" />
-    <Compile Include="Daos\AbstractTransactionDao.cs" />
-    <Compile Include="Daos\CreditCardDao.cs" />
-    <Compile Include="Daos\ITransactionDao.cs" />
+    <Compile Include="Consumers\AbstractTransactionConsumer.cs" />
+    <Compile Include="Consumers\CreditCardConsumer.cs" />
+    <Compile Include="Consumers\ITransactionConsumer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -69,7 +69,7 @@
     <Compile Include="ControllersTests\CreditCardControllerTests.cs" />
     <Compile Include="Factories\ModelFactory.cs" />
     <Compile Include="MundipaggTests\CreditCardTransactionTests.cs" />
-    <Compile Include="Mocks\Daos\MockedCreditCardDao.cs" />
+    <Compile Include="Mocks\Daos\MockedCreditCardConsumer.cs" />
     <Compile Include="Mocks\Services\MockedCreditCardService.cs" />
   </ItemGroup>
   <ItemGroup>

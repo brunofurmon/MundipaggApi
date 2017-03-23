@@ -13,22 +13,11 @@ using System.Net;
 using System.Web;
 
 
-namespace MundipaggApi.Daos
+namespace MundipaggApi.Consumers
 {
-    public class CreditCardDao: AbstractTransactionDao
+    public class CreditCardConsumer: AbstractMundipaggConsumer
     {
-        // Host URI - defined in Web.config
-        private static string HOST_URI = AppConfig.GetHostUri();
-        // Merchant Key - defined in Web.config
-        private static Guid MERCHANT_KEY = AppConfig.GetMerchantKey();
-
-        // Gateway Client
-        private readonly GatewayServiceClient serviceClient;
-
-        public CreditCardDao() : base()
-        {
-            this.serviceClient = new GatewayServiceClient(MERCHANT_KEY, new Uri(HOST_URI));
-        }
+        public CreditCardConsumer() : base() { }
 
         public override HttpResponse<ManageSaleResponse> Cancel(Guid orderKey)
         {

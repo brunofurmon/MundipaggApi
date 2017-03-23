@@ -1,6 +1,6 @@
 ﻿using GatewayApiClient.DataContracts;
 using GatewayApiClient.Utility;
-using MundipaggApi.Daos;
+using MundipaggApi.Consumers;
 using MundipaggApi.Dto;
 using System;
 
@@ -9,33 +9,33 @@ namespace MundipaggApi.Services
 {
     public class CreditCardService : AbstractTransactionService
     {
-        private readonly ITransactionDao dao;
+        private readonly ITransactionConsumer consumer;
 
         public CreditCardService() : base()
         {
-            this.dao = new CreditCardDao();
+            this.consumer = new CreditCardConsumer();
         }
 
         public CreditCardService(
-            ITransactionDao creditCardTransactionDao
+            ITransactionConsumer creditCardTransactionDao
             ) : base()
         {
-            this.dao = creditCardTransactionDao;
+            this.consumer = creditCardTransactionDao;
         }
 
         public override HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form)
         {
-            return this.dao.Create(form);
+            return this.consumer.Create(form);
         }
 
         public override HttpResponse<ManageSaleResponse> Capture(Guid orderKey)
         {
-            return this.dao.Capture(orderKey);
+            return this.consumer.Capture(orderKey);
         }
 
         public override HttpResponse<ManageSaleResponse> Cancel(Guid orkerKey)
         {
-            return this.dao.Cancel(orkerKey);
+            return this.consumer.Cancel(orkerKey);
         }
     }
 }

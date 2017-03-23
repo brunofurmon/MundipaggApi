@@ -2,14 +2,11 @@
 using GatewayApiClient.Utility;
 using MundipaggApi.Dto;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 
-namespace MundipaggApi.Daos
+namespace MundipaggApi.Consumers
 {
-    public interface ITransactionDao
+    public interface ITransactionConsumer
     {
         HttpResponse<CreateSaleResponse> Create(CreateTransactionForm form);
         HttpResponse<ManageSaleResponse> Capture(Guid orkerKey);

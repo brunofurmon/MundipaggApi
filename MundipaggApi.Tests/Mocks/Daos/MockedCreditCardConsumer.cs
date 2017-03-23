@@ -1,17 +1,15 @@
 ﻿using GatewayApiClient.DataContracts;
 using GatewayApiClient.Utility;
+using MundipaggApi.Consumers;
 using MundipaggApi.Dto;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 
 namespace MundipaggApi.Daos
 {
-    public class MockedCreditCardDao: AbstractTransactionDao
+    public class MockedCreditCardConsumer : AbstractMundipaggConsumer
     {
-        public MockedCreditCardDao() : base() { }
+        public MockedCreditCardConsumer() : base() { }
 
         public override HttpResponse<ManageSaleResponse> Cancel(Guid orkerKey)
         {
