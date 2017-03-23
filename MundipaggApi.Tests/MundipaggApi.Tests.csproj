@@ -55,16 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllersTests\CreditCardControllerTests.cs" />
+    <Compile Include="Factories\SaleRequestFactory.cs" />
     <Compile Include="MundipaggTests\CreditCardTransactionTests.cs" />
     <Compile Include="Mocks\Daos\MockedCreditCardDao.cs" />
     <Compile Include="Mocks\Services\MockedCreditCardService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicesTests\CreditCardServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MundipaggApi\MundipaggApi.csproj">
       <Project>{4444E2B9-BB9E-4C4A-B512-66732B3A2759}</Project>
