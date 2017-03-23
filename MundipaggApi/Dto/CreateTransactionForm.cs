@@ -14,6 +14,8 @@ namespace MundipaggApi.Dto
         [Required]
         public int ExpMonth { get; set; }
         [Required]
+        public int ExpYear { get; set; }
+        [Required]
         public int SecurityCode { get; set; }
         [Required]
         public string HolderName { get; set; }

@@ -59,7 +59,7 @@ namespace MundipaggApi.Daos
         public override void Create(CreateTransactionForm form)
         {
             // Converts string into one of CreditCardBrandEnum options
-
+            CreditCardBrandEnum card = (CreditCardBrandEnum) Enum.Parse(typeof(CreditCardBrandEnum), form.CreditCardBrand);
             
             // Creates Transaction
             CreditCardTransaction transaction = new CreditCardTransaction()
@@ -67,14 +67,14 @@ namespace MundipaggApi.Daos
                 AmountInCents = form.AmountInCents,
                 CreditCard = new CreditCard()
                 {
-                    CreditCardBrand = CreditCardBrandEnum.Visa,
-                    CreditCardNumber = "4111111111111111",
-                    ExpMonth = 10,
-                    ExpYear = 22,
-                    HolderName = "LUKE SKYWALKER",
-                    SecurityCode = "123"
+                    CreditCardBrand = card,
+                    CreditCardNumber = form.CreditCardNumber,
+                    ExpMonth = form.ExpMonth,
+                    ExpYear = form.ExpYear,
+                    HolderName = form.HolderName,
+                    SecurityCode = form.SecurityCode.ToString()
                 },
-                InstallmentCount = 1
+                InstallmentCount = form.InstallmentCount
             };
 
             // Cria requisição.

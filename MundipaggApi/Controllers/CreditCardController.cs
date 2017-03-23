@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
 
+
 namespace MundipaggApi.Controllers
 {
     [RoutePrefix("api/transaction")]
@@ -48,6 +49,7 @@ namespace MundipaggApi.Controllers
                 return Json(ModelState);
             }
 
+            this.transactionService.Create(form);
             return Ok("Create");
         }
 
